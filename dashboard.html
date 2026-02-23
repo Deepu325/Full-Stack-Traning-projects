@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle (CSS only solution) -->
+    <input type="checkbox" id="darkModeToggle" class="dark-mode-toggle">
+    <label for="darkModeToggle" class="dark-mode-label">🌙</label>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="url(#grad)"/>
+                    <path d="M20 10C19.4477 10 19 10.4477 19 11V29C19 29.5523 19.4477 30 20 30C20.5523 30 21 29.5523 21 29V11C21 10.4477 20.5523 10 20 10Z" fill="white"/>
+                    <path d="M14 18C13.4477 18 13 18.4477 13 19V29C13 29.5523 13.4477 30 14 30C14.5523 30 15 29.5523 15 29V19C15 18.4477 14.5523 18 14 18Z" fill="white"/>
+                    <path d="M26 22C25.4477 22 25 22.4477 25 23V29C25 29.5523 25.4477 30 26 30C26.5523 30 27 29.5523 27 29V23C27 22.4477 26.5523 22 26 22Z" fill="white"/>
+                    <defs>
+                        <linearGradient id="grad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">StudHub</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#courses" class="nav-link">Courses</a>
+                <a href="#assignments" class="nav-link">Assignments</a>
+            </nav>
+            <div class="profile-section">
+                <div class="notification-badge">3</div>
+                <div class="profile-avatar">A</div>
+                <span class="profile-name">Alex</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="sidebar-link active">
+                    <span class="sidebar-icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="#courses" class="sidebar-link">
+                    <span class="sidebar-icon">📚</span>
+                    Courses
+                </a>
+                <a href="#assignments" class="sidebar-link">
+                    <span class="sidebar-icon">✏️</span>
+                    Assignments
+                </a>
+                <a href="#grades" class="sidebar-link">
+                    <span class="sidebar-icon">📈</span>
+                    Grades
+                </a>
+                <a href="#schedule" class="sidebar-link">
+                    <span class="sidebar-icon">📅</span>
+                    Schedule
+                </a>
+                <a href="#settings" class="sidebar-link">
+                    <span class="sidebar-icon">⚙️</span>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Statistics Cards Section -->
+            <section class="stats-section">
+                <h1 class="section-title">Welcome back, Alex!</h1>
+                <p class="section-subtitle">Here's your performance overview</p>
+                
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <h3 class="stat-label">Enrolled Courses</h3>
+                        <p class="stat-value">8</p>
+                        <div class="stat-meta">+2 this semester</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <h3 class="stat-label">GPA</h3>
+                        <p class="stat-value">3.85</p>
+                        <div class="stat-meta">Excellent</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <h3 class="stat-label">Completed Tasks</h3>
+                        <p class="stat-value">45</p>
+                        <div class="stat-meta">This month</div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <h3 class="stat-label">Attendance</h3>
+                        <p class="stat-value">98%</p>
+                        <div class="stat-meta">Outstanding</div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Table Section -->
+            <section class="table-section">
+                <h2 class="section-title">Recent Assignments</h2>
+                
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr class="table-header">
+                                <th class="col-course">Course</th>
+                                <th class="col-assignment">Assignment</th>
+                                <th class="col-due">Due Date</th>
+                                <th class="col-status">Status</th>
+                                <th class="col-grade">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td>Data Structures</td>
+                                <td>Binary Trees Implementation</td>
+                                <td>Feb 28, 2026</td>
+                                <td><span class="badge badge-completed">Completed</span></td>
+                                <td>A+</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Web Development</td>
+                                <td>Portfolio Website</td>
+                                <td>Mar 03, 2026</td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Database Design</td>
+                                <td>Schema Normalization</td>
+                                <td>Feb 25, 2026</td>
+                                <td><span class="badge badge-submitted">Submitted</span></td>
+                                <td>A</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Algorithms</td>
+                                <td>Graph Traversal</td>
+                                <td>Mar 05, 2026</td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>-</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Operating Systems</td>
+                                <td>Process Scheduling</td>
+                                <td>Feb 26, 2026</td>
+                                <td><span class="badge badge-completed">Completed</span></td>
+                                <td>B+</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Web Development</td>
+                                <td>API Integration</td>
+                                <td>Mar 01, 2026</td>
+                                <td><span class="badge badge-submitted">Submitted</span></td>
+                                <td>A-</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Data Structures</td>
+                                <td>Sorting Algorithms</td>
+                                <td>Feb 20, 2026</td>
+                                <td><span class="badge badge-completed">Completed</span></td>
+                                <td>A+</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>Database Design</td>
+                                <td>Query Optimization</td>
+                                <td>Mar 02, 2026</td>
+                                <td><span class="badge badge-pending">Pending</span></td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2 class="section-title">Submit Feedback</h2>
+                <p class="section-subtitle">We'd love to hear from you! Help us improve our platform.</p>
+                
+                <form class="feedback-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="studentName" class="form-label">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="studentName" 
+                            class="form-input" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail" class="form-label">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="studentEmail" 
+                            class="form-input" 
+                            placeholder="your.email@university.edu"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department" class="form-label">Department</label>
+                            <select id="department" class="form-input form-select">
+                                <option value="">Select Department</option>
+                                <option value="cse">Computer Science</option>
+                                <option value="ece">Electronics</option>
+                                <option value="me">Mechanical</option>
+                                <option value="ce">Civil</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="semester" class="form-label">Semester</label>
+                            <select id="semester" class="form-input form-select">
+                                <option value="">Select Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackMessage" class="form-label">Your Feedback</label>
+                        <textarea 
+                            id="feedbackMessage" 
+                            class="form-textarea" 
+                            rows="5"
+                            placeholder="Share your thoughts, suggestions, or concerns..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="subscribe" class="form-checkbox">
+                            <span>Subscribe to updates</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="marketing" class="form-checkbox">
+                            <span>I agree to the terms and conditions</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Feedback</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Floating Help Button -->
+    <button class="help-button" title="Get Help">
+        <span class="help-icon">?</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">StudHub</h4>
+                <p class="footer-text">Empowering students through modern learning solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Twitter</a></li>
+                    <li><a href="#" class="footer-link">Facebook</a></li>
+                    <li><a href="#" class="footer-link">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudHub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
