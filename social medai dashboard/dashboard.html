@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Dashboard</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-page="overview">Overview</a></li>
+                <li><a href="#" class="nav-link" data-page="accounts">Accounts</a></li>
+                <li><a href="#" class="nav-link" data-page="posts">Posts</a></li>
+                <li><a href="#" class="nav-link" data-page="analytics">Analytics</a></li>
+                <li><a href="#" class="nav-link" data-page="profile">Profile</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 id="pageTitle">Dashboard Overview</h1>
+                <div class="user-info">
+                    <span id="userName">Welcome, User</span>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- Overview Page -->
+                <div id="overview" class="page active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Accounts</h3>
+                            <div class="stat-number" id="totalAccounts">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Posts</h3>
+                            <div class="stat-number" id="totalPosts">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Followers</h3>
+                            <div class="stat-number" id="totalFollowers">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Likes</h3>
+                            <div class="stat-number" id="totalLikes">0</div>
+                        </div>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Recent Posts</h3>
+                        <div id="recentPosts" class="posts-list"></div>
+                    </div>
+                </div>
+
+                <!-- Accounts Page -->
+                <div id="accounts" class="page">
+                    <div class="page-header">
+                        <h2>Social Media Accounts</h2>
+                        <button class="btn btn-primary" id="addAccountBtn">Add Account</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="accountsTable">
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Account Name</th>
+                                    <th>Followers</th>
+                                    <th>Following</th>
+                                    <th>Posts</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Posts Page -->
+                <div id="posts" class="page">
+                    <div class="page-header">
+                        <h2>Posts Management</h2>
+                        <button class="btn btn-primary" id="addPostBtn">Create Post</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="postsTable">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Platform</th>
+                                    <th>Account</th>
+                                    <th>Likes</th>
+                                    <th>Comments</th>
+                                    <th>Shares</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Analytics Page -->
+                <div id="analytics" class="page">
+                    <h2>Analytics</h2>
+                    <div class="charts-container">
+                        <div class="chart-card">
+                            <h3>Engagement by Platform</h3>
+                            <canvas id="engagementChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Followers by Platform</h3>
+                            <canvas id="followersChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Page -->
+                <div id="profile" class="page">
+                    <h2>Profile Settings</h2>
+                    <div class="profile-form">
+                        <form id="profileForm">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" id="profileUsername" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="profileFullName">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="profileEmail" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Social Media Account</h2>
+            <form id="accountForm">
+                <div class="form-group">
+                    <label>Platform</label>
+                    <select id="platform" required>
+                        <option value="">Select Platform</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Account Name</label>
+                    <input type="text" id="accountName" required>
+                </div>
+                <div class="form-group">
+                    <label>Followers</label>
+                    <input type="number" id="followers" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Following</label>
+                    <input type="number" id="following" value="0">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Post</h2>
+            <form id="postForm">
+                <div class="form-group">
+                    <label>Account</label>
+                    <select id="postAccount" required>
+                        <option value="">Select Account</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="postTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="postContent" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
