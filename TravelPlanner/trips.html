@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trips - Travel Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dashboard">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">✈️</span>
+                <span class="logo-text">TravelPlanner</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="trips.html" class="active">My Trips</a></li>
+                <li><a href="#" id="logoutBtn" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Trips Section -->
+    <section class="trips-section">
+        <div class="trips-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>My Trips</h1>
+                <button class="btn btn-primary" id="openAddTripModal">
+                    <span>➕</span> Add New Trip
+                </button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Trips</button>
+                <button class="filter-tab" data-filter="upcoming">Upcoming</button>
+                <button class="filter-tab" data-filter="completed">Completed</button>
+            </div>
+
+            <!-- Trips Grid -->
+            <div id="tripsContainer" class="trips-grid">
+                <!-- Trips will be dynamically loaded here -->
+            </div>
+
+            <!-- No Trips Message -->
+            <div id="noTripsMsg" class="no-trips" style="display: none;">
+                <div class="no-trips-icon">🧳</div>
+                <h3>No trips found</h3>
+                <p>Start planning your adventure today!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Trip Modal -->
+    <div id="addTripModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Trip</h2>
+                <span class="close-modal" id="closeModal">&times;</span>
+            </div>
+            
+            <form id="addTripForm" class="trip-form">
+                <div class="form-group">
+                    <label for="tripDestination">Destination</label>
+                    <input 
+                        type="text" 
+                        id="tripDestination" 
+                        placeholder="e.g., Paris, France"
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tripStartDate">Start Date</label>
+                        <input 
+                            type="date" 
+                            id="tripStartDate" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tripEndDate">End Date</label>
+                        <input 
+                            type="date" 
+                            id="tripEndDate" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripBudget">Budget ($)</label>
+                    <input 
+                        type="number" 
+                        id="tripBudget" 
+                        placeholder="Enter your budget"
+                        min="0"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="tripDescription">Description</label>
+                    <textarea 
+                        id="tripDescription" 
+                        rows="4" 
+                        placeholder="Tell us about your trip plans..."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tripStatus">Status</label>
+                    <select id="tripStatus" required>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Trip</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Trip Modal -->
+    <div id="editTripModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Trip</h2>
+                <span class="close-modal" id="closeEditModal">&times;</span>
+            </div>
+            
+            <form id="editTripForm" class="trip-form">
+                <input type="hidden" id="editTripId">
+                
+                <div class="form-group">
+                    <label for="editTripDestination">Destination</label>
+                    <input 
+                        type="text" 
+                        id="editTripDestination" 
+                        required
+                    >
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editTripStartDate">Start Date</label>
+                        <input 
+                            type="date" 
+                            id="editTripStartDate" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editTripEndDate">End Date</label>
+                        <input 
+                            type="date" 
+                            id="editTripEndDate" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editTripBudget">Budget ($)</label>
+                    <input 
+                        type="number" 
+                        id="editTripBudget" 
+                        min="0"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="editTripDescription">Description</label>
+                    <textarea 
+                        id="editTripDescription" 
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="editTripStatus">Status</label>
+                    <select id="editTripStatus" required>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Trip</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

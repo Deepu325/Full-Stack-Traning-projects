@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details - Travel Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dashboard">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">✈️</span>
+                <span class="logo-text">TravelPlanner</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="trips.html">My Trips</a></li>
+                <li><a href="trip-details.html" class="active">Trip Details</a></li>
+                <li><a href="#" id="logoutBtn" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Trip Details Section -->
+    <section class="trip-details-section">
+        <div class="trip-details-container">
+            <!-- Trip Header -->
+            <div class="trip-details-header">
+                <div class="trip-info">
+                    <h1 id="tripDestination">Loading...</h1>
+                    <p id="tripDates">Loading dates...</p>
+                    <span id="tripStatus" class="trip-status">upcoming</span>
+                </div>
+                <div class="trip-actions">
+                    <button class="btn btn-secondary" onclick="window.location.href='trips.html'">
+                        ← Back to Trips
+                    </button>
+                    <button class="btn btn-primary" id="editTripBtn">Edit Trip</button>
+                </div>
+            </div>
+
+            <!-- Budget Overview -->
+            <div class="budget-overview">
+                <div class="budget-card">
+                    <div class="budget-icon">💰</div>
+                    <div class="budget-info">
+                        <h3 id="totalBudget">$0</h3>
+                        <p>Total Budget</p>
+                    </div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-icon">💸</div>
+                    <div class="budget-info">
+                        <h3 id="totalExpenses">$0</h3>
+                        <p>Total Expenses</p>
+                    </div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-icon">💵</div>
+                    <div class="budget-info">
+                        <h3 id="remainingBudget">$0</h3>
+                        <p>Remaining</p>
+                    </div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-icon">📊</div>
+                    <div class="budget-info">
+                        <h3 id="budgetPercentage">0%</h3>
+                        <p>Budget Used</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="details-tabs">
+                <button class="details-tab active" data-tab="itinerary">📅 Itinerary</button>
+                <button class="details-tab" data-tab="expenses">💰 Expenses</button>
+                <button class="details-tab" data-tab="checklist">✅ Checklist</button>
+                <button class="details-tab" data-tab="weather">🌤️ Weather</button>
+                <button class="details-tab" data-tab="map">🗺️ Map</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Itinerary Tab -->
+                <div id="itinerary-tab" class="tab-pane active">
+                    <div class="tab-header">
+                        <h2>Daily Itinerary</h2>
+                        <button class="btn btn-primary" id="addItineraryBtn">+ Add Activity</button>
+                    </div>
+                    <div id="itineraryContainer" class="itinerary-container">
+                        <!-- Itinerary items will be loaded here -->
+                    </div>
+                    <div id="noItinerary" class="empty-state">
+                        <div class="empty-icon">📅</div>
+                        <h3>No activities planned yet</h3>
+                        <p>Start planning your daily activities</p>
+                    </div>
+                </div>
+
+                <!-- Expenses Tab -->
+                <div id="expenses-tab" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Expenses</h2>
+                        <button class="btn btn-primary" id="addExpenseBtn">+ Add Expense</button>
+                    </div>
+                    <div id="expensesContainer" class="expenses-container">
+                        <!-- Expenses will be loaded here -->
+                    </div>
+                    <div id="noExpenses" class="empty-state">
+                        <div class="empty-icon">💰</div>
+                        <h3>No expenses recorded</h3>
+                        <p>Start tracking your trip expenses</p>
+                    </div>
+                </div>
+
+                <!-- Checklist Tab -->
+                <div id="checklist-tab" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Packing Checklist</h2>
+                        <button class="btn btn-primary" id="addChecklistBtn">+ Add Item</button>
+                    </div>
+                    <div id="checklistContainer" class="checklist-container">
+                        <!-- Checklist items will be loaded here -->
+                    </div>
+                    <div id="noChecklist" class="empty-state">
+                        <div class="empty-icon">✅</div>
+                        <h3>No checklist items</h3>
+                        <p>Create your packing checklist</p>
+                    </div>
+                </div>
+
+                <!-- Weather Tab -->
+                <div id="weather-tab" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Weather Forecast</h2>
+                    </div>
+                    <div id="weatherContainer" class="weather-container">
+                        <!-- Weather info will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Map Tab -->
+                <div id="map-tab" class="tab-pane">
+                    <div class="tab-header">
+                        <h2>Destination Map</h2>
+                    </div>
+                    <div id="mapContainer" class="map-container">
+                        <!-- Map will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Itinerary Modal -->
+    <div id="itineraryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Activity</h2>
+                <span class="close-modal" id="closeItineraryModal">&times;</span>
+            </div>
+            <form id="itineraryForm" class="trip-form">
+                <div class="form-group">
+                    <label for="dayNumber">Day Number</label>
+                    <input type="number" id="dayNumber" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="activityTime">Time</label>
+                    <input type="time" id="activityTime">
+                </div>
+                <div class="form-group">
+                    <label for="activity">Activity</label>
+                    <textarea id="activity" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelItinerary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Activity</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Expense</h2>
+                <span class="close-modal" id="closeExpenseModal">&times;</span>
+            </div>
+            <form id="expenseForm" class="trip-form">
+                <div class="form-group">
+                    <label for="expenseName">Expense Name</label>
+                    <input type="text" id="expenseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseAmount">Amount ($)</label>
+                    <input type="number" id="expenseAmount" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseCategory">Category</label>
+                    <select id="expenseCategory" required>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="activities">Activities</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expenseDate">Date</label>
+                    <input type="date" id="expenseDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="expenseNotes">Notes</label>
+                    <textarea id="expenseNotes" rows="2"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelExpense">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Checklist Modal -->
+    <div id="checklistModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Checklist Item</h2>
+                <span class="close-modal" id="closeChecklistModal">&times;</span>
+            </div>
+            <form id="checklistForm" class="trip-form">
+                <div class="form-group">
+                    <label for="checklistItem">Item</label>
+                    <input type="text" id="checklistItem" required>
+                </div>
+                <div class="form-group">
+                    <label for="checklistCategory">Category</label>
+                    <select id="checklistCategory">
+                        <option value="clothing">Clothing</option>
+                        <option value="toiletries">Toiletries</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="documents">Documents</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelChecklist">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/trip-details.js"></script>
+</body>
+</html>

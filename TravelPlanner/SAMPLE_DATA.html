@@ -1,0 +1,173 @@
+<!-- 
+    SAMPLE DATA INITIALIZATION
+    
+    This file contains sample data that can be used for testing.
+    To use this data:
+    
+    1. Open browser DevTools (F12)
+    2. Go to Console tab
+    3. Copy and paste the code below
+    4. Press Enter
+    5. Refresh the page
+    
+    This will populate localStorage with sample users and trips for testing.
+-->
+
+<script>
+// Sample Users
+const sampleUsers = [
+    {
+        id: "user1",
+        name: "John Traveler",
+        email: "john@example.com",
+        password: "john123",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "user2",
+        name: "Sarah Adventure",
+        email: "sarah@example.com",
+        password: "sarah123",
+        createdAt: new Date().toISOString()
+    }
+];
+
+// Sample Trips for John
+const sampleTrips = [
+    {
+        id: "trip1",
+        userId: "user1",
+        destination: "Paris, France",
+        startDate: "2024-06-15",
+        endDate: "2024-06-22",
+        budget: 3500,
+        description: "Summer vacation in the City of Light. Visit Eiffel Tower, Louvre Museum, and enjoy French cuisine.",
+        status: "upcoming",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip2",
+        userId: "user1",
+        destination: "Tokyo, Japan",
+        startDate: "2024-08-01",
+        endDate: "2024-08-15",
+        budget: 4500,
+        description: "Explore ancient temples, modern technology, and delicious food in Tokyo.",
+        status: "upcoming",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip3",
+        userId: "user1",
+        destination: "New York, USA",
+        startDate: "2024-03-10",
+        endDate: "2024-03-17",
+        budget: 2800,
+        description: "City that never sleeps. Broadway shows, Times Square, and Central Park.",
+        status: "completed",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip4",
+        userId: "user1",
+        destination: "Barcelona, Spain",
+        startDate: "2024-07-20",
+        endDate: "2024-07-27",
+        budget: 3200,
+        description: "Gaudí architecture, beautiful beaches, and vibrant nightlife.",
+        status: "upcoming",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip5",
+        userId: "user1",
+        destination: "Dubai, UAE",
+        startDate: "2024-02-01",
+        endDate: "2024-02-08",
+        budget: 4000,
+        description: "Luxury shopping, desert safari, and modern skyscrapers.",
+        status: "completed",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip6",
+        userId: "user1",
+        destination: "London, UK",
+        startDate: "2024-09-10",
+        endDate: "2024-09-17",
+        budget: 3100,
+        description: "Big Ben, Tower of London, and traditional British tea.",
+        status: "upcoming",
+        createdAt: new Date().toISOString()
+    },
+    // Sample trips for Sarah
+    {
+        id: "trip7",
+        userId: "user2",
+        destination: "Bali, Indonesia",
+        startDate: "2024-05-15",
+        endDate: "2024-05-25",
+        budget: 2500,
+        description: "Tropical paradise with beautiful beaches and temples.",
+        status: "upcoming",
+        createdAt: new Date().toISOString()
+    },
+    {
+        id: "trip8",
+        userId: "user2",
+        destination: "Sydney, Australia",
+        startDate: "2024-01-15",
+        endDate: "2024-01-22",
+        budget: 3800,
+        description: "Opera House, Bondi Beach, and Great Barrier Reef.",
+        status: "completed",
+        createdAt: new Date().toISOString()
+    }
+];
+
+// Function to initialize sample data
+function initializeSampleData() {
+    // Save users
+    localStorage.setItem('users', JSON.stringify(sampleUsers));
+    
+    // Save trips
+    localStorage.setItem('trips', JSON.stringify(sampleTrips));
+    
+    // Set current user to John for testing
+    localStorage.setItem('currentUser', JSON.stringify({
+        id: "user1",
+        name: "John Traveler",
+        email: "john@example.com"
+    }));
+    
+    console.log('✅ Sample data initialized successfully!');
+    console.log('📊 Users created:', sampleUsers.length);
+    console.log('🗺️ Trips created:', sampleTrips.length);
+    console.log('\n📝 Test Credentials:');
+    console.log('User 1 - Email: john@example.com, Password: john123');
+    console.log('User 2 - Email: sarah@example.com, Password: sarah123');
+    console.log('\n💡 Tip: Refresh the page to see the data in action!');
+}
+
+// Run initialization
+initializeSampleData();
+</script>
+
+<!-- 
+    ALTERNATIVE: Copy-paste this in browser console directly:
+    
+    localStorage.setItem('users', JSON.stringify([
+        {id:"user1",name:"John Traveler",email:"john@example.com",password:"john123",createdAt:new Date().toISOString()},
+        {id:"user2",name:"Sarah Adventure",email:"sarah@example.com",password:"sarah123",createdAt:new Date().toISOString()}
+    ]));
+    
+    localStorage.setItem('trips', JSON.stringify([
+        {id:"trip1",userId:"user1",destination:"Paris, France",startDate:"2024-06-15",endDate:"2024-06-22",budget:3500,description:"Summer vacation",status:"upcoming",createdAt:new Date().toISOString()},
+        {id:"trip2",userId:"user1",destination:"Tokyo, Japan",startDate:"2024-08-01",endDate:"2024-08-15",budget:4500,description:"Explore Japan",status:"upcoming",createdAt:new Date().toISOString()},
+        {id:"trip3",userId:"user1",destination:"New York, USA",startDate:"2024-03-10",endDate:"2024-03-17",budget:2800,description:"City trip",status:"completed",createdAt:new Date().toISOString()}
+    ]));
+    
+    localStorage.setItem('currentUser', JSON.stringify({id:"user1",name:"John Traveler",email:"john@example.com"}));
+    
+    console.log('Sample data loaded!');
+-->

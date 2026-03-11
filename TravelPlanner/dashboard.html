@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Travel Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dashboard">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">✈️</span>
+                <span class="logo-text">TravelPlanner</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="trips.html">My Trips</a></li>
+                <li><a href="#" id="logoutBtn" class="btn-nav">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard-section">
+        <div class="dashboard-container">
+            <!-- Welcome Header -->
+            <div class="dashboard-header">
+                <div>
+                    <h1>Welcome back, <span id="userName">Traveler</span>! 👋</h1>
+                    <p>Ready to plan your next adventure?</p>
+                </div>
+                <a href="trips.html" class="btn btn-primary">
+                    <span>➕</span> Add New Trip
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🗺️</div>
+                    <div class="stat-info">
+                        <h3 id="totalTrips">0</h3>
+                        <p>Total Trips</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-info">
+                        <h3 id="upcomingTrips">0</h3>
+                        <p>Upcoming</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3 id="completedTrips">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="totalBudget">$0</h3>
+                        <p>Total Budget</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Trips -->
+            <div class="recent-trips">
+                <h2>Recent Trips</h2>
+                <div id="recentTripsContainer" class="trips-grid">
+                    <!-- Trips will be dynamically loaded here -->
+                </div>
+                <div id="noTripsMessage" class="no-trips">
+                    <div class="no-trips-icon">🧳</div>
+                    <h3>No trips yet!</h3>
+                    <p>Start planning your first adventure</p>
+                    <a href="trips.html" class="btn btn-primary">Create Your First Trip</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
