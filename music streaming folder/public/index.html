@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Music Streaming</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">🎵 Mini Music Stream</div>
+    <nav>
+      <button id="btnLibrary" class="nav-btn active">Library</button>
+      <button id="btnPlaylists" class="nav-btn">Playlists</button>
+      <button id="btnAccount" class="nav-btn">Account</button>
+    </nav>
+    <div id="userInfo" class="user-info"></div>
+  </header>
+
+  <main>
+    <section id="sectionLibrary" class="panel">
+      <div class="panel-header">
+        <h2>Explore music</h2>
+        <div class="controls">
+          <input id="searchInput" type="search" placeholder="Search songs, artists, albums" />
+          <button id="btnSearch" class="primary">Search</button>
+        </div>
+      </div>
+
+      <div id="uploadPanel" class="upload-panel hidden">
+        <h3>Upload a song</h3>
+        <div class="controls">
+          <input id="uploadTitle" type="text" placeholder="Song title" />
+          <input id="uploadArtist" type="text" placeholder="Artist name" />
+          <input id="uploadAlbum" type="text" placeholder="Album name" />
+          <input id="uploadFile" type="file" accept="audio/*" />
+          <button id="btnUploadSong" class="primary">Upload</button>
+        </div>
+        <p class="hint">Upload is available when signed in.</p>
+      </div>
+
+      <div id="songList" class="list"></div>
+    </section>
+
+    <section id="sectionPlaylists" class="panel hidden">
+      <div class="panel-header">
+        <h2>Your playlists</h2>
+        <div class="controls">
+          <input id="playlistName" type="text" placeholder="New playlist name" />
+          <button id="btnCreatePlaylist" class="primary">Create</button>
+        </div>
+      </div>
+      <div id="playlistList" class="list"></div>
+      <div id="playlistDetail" class="list hidden">
+        <h3 id="playlistTitle"></h3>
+        <div class="playlist-actions">
+          <button id="btnBackToPlaylists">← Back</button>
+          <button id="btnDeletePlaylist" class="danger">Delete playlist</button>
+        </div>
+        <div id="playlistSongs" class="list"></div>
+      </div>
+    </section>
+
+    <section id="sectionAccount" class="panel hidden">
+      <div class="panel-header">
+        <h2>Account</h2>
+      </div>
+      <div id="authForms">
+        <div class="auth-panel" id="loginPanel">
+          <h3>Login</h3>
+          <input id="loginUsername" type="text" placeholder="Username" />
+          <input id="loginPassword" type="password" placeholder="Password" />
+          <button id="btnLogin" class="primary">Login</button>
+        </div>
+        <div class="auth-panel" id="registerPanel">
+          <h3>Register</h3>
+          <input id="registerUsername" type="text" placeholder="Username" />
+          <input id="registerEmail" type="email" placeholder="Email" />
+          <input id="registerPassword" type="password" placeholder="Password" />
+          <button id="btnRegister" class="primary">Create account</button>
+        </div>
+      </div>
+      <div id="accountInfo" class="hidden">
+        <p>Logged in as <strong id="accountUser"></strong></p>
+        <button id="btnLogout" class="danger">Logout</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="player">
+      <div class="player-info">
+        <div id="nowPlayingTitle">No track selected</div>
+        <div id="nowPlayingArtist"></div>
+      </div>
+      <audio id="audioPlayer" controls preload="metadata"></audio>
+    </div>
+  </footer>
+
+  <template id="songRowTemplate">
+    <div class="item song-row">
+      <div class="song-meta">
+        <div class="song-title"></div>
+        <div class="song-details"></div>
+      </div>
+      <div class="song-actions">
+        <button class="btn-play">Play</button>
+        <button class="btn-add">+ Playlist</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="playlistRowTemplate">
+    <div class="item playlist-row">
+      <div class="playlist-meta">
+        <div class="playlist-name"></div>
+      </div>
+      <div class="playlist-actions">
+        <button class="btn-view">View</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="playlistSongRowTemplate">
+    <div class="item song-row">
+      <div class="song-meta">
+        <div class="song-title"></div>
+        <div class="song-details"></div>
+      </div>
+      <div class="song-actions">
+        <button class="btn-play">Play</button>
+        <button class="btn-remove">Remove</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
