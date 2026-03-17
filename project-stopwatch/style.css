@@ -1,0 +1,89 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Full-page centered layout */
+body, html {
+  height: 100%;
+  background: linear-gradient(180deg, #f7f9fc 0%, #e9eef7 100%);
+  color: #12263f;
+}
+
+/* Main container centered both vertically and horizontally */
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+}
+
+/* Title */
+.container h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.6px;
+  color: #0f1724;
+}
+
+/* Time display styling */
+.display {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 22px 30px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #0b1220;
+  box-shadow: 0 6px 18px rgba(9, 30, 66, 0.08);
+  min-width: 260px;
+  text-align: center;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button base style */
+.btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  background: #eef2f7;
+  color: #0b1220;
+  box-shadow: 0 3px 8px rgba(11,18,32,0.06);
+}
+
+/* Primary (start/stop) button */
+.btn.primary {
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+  color: white;
+  box-shadow: 0 6px 18px rgba(30,64,175,0.18);
+}
+
+/* Hover and active states */
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); box-shadow: 0 3px 8px rgba(11,18,32,0.06); }
+
+/* Instruction note */
+.note {
+  margin-top: 6px;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+/* Responsive tweak for small screens */
+@media (max-width: 420px) {
+  .display { font-size: 1.6rem; padding: 18px 22px; min-width: 220px; }
+  .container h1 { font-size: 1.2rem; }
+}

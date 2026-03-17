@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Password Generator</h1>
+            
+            <!-- Password Display Section -->
+            <div class="password-display">
+                <input 
+                    type="text" 
+                    id="passwordOutput" 
+                    class="password-input" 
+                    placeholder="Generated password will appear here"
+                    readonly
+                >
+                <button class="copy-btn" onclick="copyToClipboard()">
+                    <span id="copyText">Copy</span>
+                </button>
+            </div>
+
+            <!-- Options Section -->
+            <div class="options-section">
+                <!-- Password Length -->
+                <div class="option-group">
+                    <label for="passwordLength">Password Length:</label>
+                    <div class="length-control">
+                        <input 
+                            type="range" 
+                            id="passwordLength" 
+                            min="4" 
+                            max="32" 
+                            value="12"
+                            oninput="updateLengthDisplay()"
+                        >
+                        <span id="lengthDisplay">12</span>
+                    </div>
+                </div>
+
+                <!-- Character Options -->
+                <div class="option-group">
+                    <label>Character Types:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="uppercase" 
+                                checked
+                            >
+                            <span>Uppercase (A-Z)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="lowercase" 
+                                checked
+                            >
+                            <span>Lowercase (a-z)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="numbers" 
+                                checked
+                            >
+                            <span>Numbers (0-9)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="special" 
+                                checked
+                            >
+                            <span>Special (!@#$%^&*)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button Section -->
+            <div class="button-section">
+                <button class="generate-btn" onclick="generatePassword()">
+                    Generate Password
+                </button>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message"></div>
+
+            <!-- Strength Indicator -->
+            <div class="strength-section">
+                <label>Password Strength:</label>
+                <div class="strength-bar-container">
+                    <div id="strengthBar" class="strength-bar"></div>
+                </div>
+                <span id="strengthText" class="strength-text">-</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
