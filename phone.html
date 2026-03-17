@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile OS UI</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-15px); }
+            50% { transform: translateX(15px); }
+            75% { transform: translateX(-15px); }
+        }
+        
+        .animate-fade-in { animation: fadeIn 0.7s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.7s ease-out forwards; }
+        .animate-zoom-in { animation: zoomIn 0.3s ease-out forwards; }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
+        
+        .animation-delay-150 { animation-delay: 150ms; }
+        .animation-delay-300 { animation-delay: 300ms; }
+
+        /* Hide scrollbar for settings */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+    </style>
+</head>
+<body class="min-h-screen bg-neutral-900 flex items-center justify-center p-4 font-sans select-none">
+
+    <!-- PHONE DEVICE CONTAINER -->
+    <div class="relative w-[380px] h-[800px] bg-black rounded-[55px] border-[12px] border-neutral-800 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden ring-4 ring-neutral-900/50">
+        
+        <!-- Dynamic Island / Notch -->
+        <div class="absolute top-0 w-full flex justify-center z-50 pt-2 pointer-events-none">
+            <div class="w-[120px] h-[32px] bg-black rounded-full flex items-center justify-between px-3 shadow-md">
+                <div class="w-2 h-2 rounded-full bg-green-500/20 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+                <div class="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center">
+                    <div class="w-2 h-2 rounded-full bg-blue-900/50"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="absolute top-0 w-full px-6 pt-4 pb-2 flex justify-between items-center z-40 text-white text-sm font-medium pointer-events-none">
+            <span class="w-12 clock-time">12:00</span>
+            <div class="flex items-center gap-2">
+                <i data-lucide="signal" class="w-4 h-4"></i>
+                <i data-lucide="wifi" class="w-4 h-4"></i>
+                <i data-lucide="battery" class="w-[18px] h-[18px] rotate-90"></i>
+            </div>
+        </div>
+
+        <!-- SCREEN CONTENT -->
+        <div class="relative w-full h-full bg-gradient-to-br from-indigo-900 via-purple-900 to-black">
+            <!-- Abstract background shapes -->
+            <div class="absolute top-20 left-10 w-64 h-64 bg-fuchsia-600/30 rounded-full blur-[80px]"></div>
+            <div class="absolute bottom-40 right-10 w-64 h-64 bg-blue-600/30 rounded-full blur-[80px]"></div>
+
+            <!-- LOCK SCREEN BASE -->
+            <div id="lock-screen" class="absolute inset-0 z-30 transition-opacity duration-500">
+                <!-- Clock & Tap to Unlock -->
+                <div id="lock-default" class="absolute inset-0 flex flex-col items-center justify-between pb-10 pt-24 cursor-pointer transition-opacity duration-300" onclick="showPinScreen()">
+                    <div class="flex flex-col items-center animate-slide-up">
+                        <div class="text-xl font-medium text-white/90 mb-2 tracking-wide clock-date">Monday, Jan 1</div>
+                        <div class="text-[80px] font-light text-white leading-none tracking-tighter clock-time">12:00</div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center animate-pulse gap-2">
+                        <span class="text-white/70 text-sm font-medium tracking-widest uppercase">Tap to unlock</span>
+                        <div class="w-1/3 h-1.5 bg-white/50 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- PIN PAD -->
+                <div id="lock-pin" class="absolute inset-0 flex-col items-center justify-center backdrop-blur-3xl bg-black/60 pt-8 transition-opacity duration-300 opacity-0 hidden">
+                    <i data-lucide="lock" class="w-6 h-6 text-white mb-4"></i>
+                    <div class="text-white text-lg mb-6 font-medium tracking-wide">Enter Passcode</div>
+                    
+                    <!-- Passcode Dots -->
+                    <div id="pin-dots" class="flex gap-5 mb-12">
+                        <div class="w-3.5 h-3.5 rounded-full border-2 border-white transition-colors"></div>
+                        <div class="w-3.5 h-3.5 rounded-full border-2 border-white transition-colors"></div>
+                        <div class="w-3.5 h-3.5 rounded-full border-2 border-white transition-colors"></div>
+                        <div class="w-3.5 h-3.5 rounded-full border-2 border-white transition-colors"></div>
+                    </div>
+                    
+                    <!-- Keypad -->
+                    <div class="grid grid-cols-3 gap-x-8 gap-y-6">
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('1')">1</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('2')">2</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('3')">3</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('4')">4</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('5')">5</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('6')">6</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('7')">7</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('8')">8</button>
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('9')">9</button>
+                        <div></div> <!-- Empty grid space -->
+                        <button class="w-[75px] h-[75px] rounded-full bg-white/10 text-white text-3xl font-light hover:bg-white/20 active:bg-white/30 flex items-center justify-center transition-colors" onclick="enterPin('0')">0</button>
+                        <button class="w-[75px] h-[75px] rounded-full text-white text-3xl font-light active:opacity-50 flex items-center justify-center transition-opacity" onclick="deletePin()">
+                            <i data-lucide="delete" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="mt-10 text-white/80 font-medium active:text-white/50 px-6 py-2" onclick="hidePinScreen()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- HOME SCREEN -->
+            <div id="home-screen" class="absolute inset-0 flex flex-col pt-16 transition-all duration-500 scale-100 opacity-0 blur-md pointer-events-none z-20">
+                <!-- App Grid -->
+                <div id="app-grid" class="grid grid-cols-4 gap-y-6 gap-x-4 px-6 mt-4">
+                    <!-- Apps injected via JS -->
+                </div>
+
+                <!-- Bottom Dock -->
+                <div class="absolute bottom-8 left-4 right-4">
+                    <div id="dock-grid" class="bg-white/10 backdrop-blur-2xl border border-white/20 shadow-xl rounded-[36px] p-4 flex justify-between items-center">
+                        <!-- Dock apps injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVE APP OVERLAY -->
+            <div id="app-overlay" class="absolute inset-0 z-40 bg-black transition-all duration-300 origin-center rounded-[45px] overflow-hidden shadow-2xl scale-0 opacity-0 pointer-events-none">
+                <div id="app-content" class="w-full h-full"></div>
+                
+                <!-- Home Indicator (Swipe up to close) -->
+                <div class="absolute bottom-2 left-0 right-0 h-8 flex items-center justify-center cursor-pointer group" onclick="closeApp()">
+                    <div class="w-1/3 h-1.5 bg-white/80 rounded-full group-hover:bg-white transition-colors group-hover:scale-y-150 group-hover:w-2/5 shadow-md"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APP TEMPLATES -->
+    
+    <!-- Web App Launcher Template (For YouTube, Netflix, etc.) -->
+    <template id="tpl-webapp">
+        <div class="h-full bg-zinc-950 flex flex-col items-center justify-center p-6 text-center">
+            <div id="webapp-icon-container" class="w-24 h-24 rounded-[28px] flex items-center justify-center mb-8 text-white shadow-2xl animate-slide-up">
+                <i id="webapp-icon" class="w-12 h-12"></i>
+            </div>
+            <h2 id="webapp-title" class="text-3xl font-bold text-white mb-3 animate-slide-up animation-delay-150">App Name</h2>
+            <p class="text-zinc-400 mb-10 px-4 text-sm leading-relaxed animate-slide-up animation-delay-150">
+                This application opens in an external browser window to ensure full functionality and security.
+            </p>
+            <button id="webapp-btn" class="bg-white text-black px-10 py-3.5 rounded-full font-semibold text-lg active:scale-95 transition-transform animate-slide-up animation-delay-300 shadow-xl">
+                Launch App
+            </button>
+        </div>
+    </template>
+
+    <template id="tpl-calculator">
+        <div class="flex flex-col h-full bg-black p-4 pt-16">
+            <div class="flex-1 flex items-end justify-end p-4">
+                <span id="calc-display" class="text-white text-6xl font-light tracking-tighter truncate">0</span>
+            </div>
+            <div class="grid grid-cols-4 gap-3 pb-8" id="calc-buttons">
+                <!-- Buttons injected via JS -->
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-weather">
+        <div class="h-full bg-gradient-to-b from-sky-400 to-blue-800 text-white p-6 pt-20 flex flex-col">
+            <div class="text-center animate-slide-up">
+                <h2 class="text-3xl font-medium">Bengaluru</h2>
+                <div class="text-8xl font-light my-2">28°</div>
+                <p class="text-xl font-medium">Mostly Clear</p>
+                <p class="text-sm opacity-80">H:32° L:21°</p>
+            </div>
+            
+            <div class="mt-12 bg-white/20 backdrop-blur-md rounded-3xl p-4 animate-slide-up animation-delay-150 opacity-0">
+                <p class="text-sm font-medium border-b border-white/20 pb-2 mb-4">HOURLY FORECAST</p>
+                <div class="flex justify-between">
+                    <div class="flex flex-col items-center gap-2"><span class="text-sm">Now</span><i data-lucide="cloud-sun" class="w-6 h-6 text-yellow-300"></i><span class="text-lg font-medium">28°</span></div>
+                    <div class="flex flex-col items-center gap-2"><span class="text-sm">4 PM</span><i data-lucide="cloud-sun" class="w-6 h-6 text-yellow-300"></i><span class="text-lg font-medium">29°</span></div>
+                    <div class="flex flex-col items-center gap-2"><span class="text-sm">5 PM</span><i data-lucide="cloud-rain" class="w-6 h-6 text-white"></i><span class="text-lg font-medium">27°</span></div>
+                    <div class="flex flex-col items-center gap-2"><span class="text-sm">6 PM</span><i data-lucide="wind" class="w-6 h-6 text-white"></i><span class="text-lg font-medium">25°</span></div>
+                    <div class="flex flex-col items-center gap-2"><span class="text-sm">7 PM</span><i data-lucide="wind" class="w-6 h-6 text-white"></i><span class="text-lg font-medium">24°</span></div>
+                </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-4 animate-slide-up animation-delay-300 opacity-0">
+                <div class="bg-white/20 backdrop-blur-md rounded-3xl p-4 flex flex-col gap-1">
+                    <span class="text-xs opacity-70 flex items-center gap-1"><i data-lucide="droplets" class="w-3 h-3"></i> HUMIDITY</span>
+                    <span class="text-2xl font-medium">64%</span>
+                </div>
+                <div class="bg-white/20 backdrop-blur-md rounded-3xl p-4 flex flex-col gap-1">
+                    <span class="text-xs opacity-70 flex items-center gap-1"><i data-lucide="wind" class="w-3 h-3"></i> WIND</span>
+                    <span class="text-2xl font-medium">12 km/h</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-settings">
+        <div class="h-full bg-zinc-950 text-white pt-16 overflow-y-auto pb-8">
+            <h1 class="text-3xl font-bold px-6 mb-6 animate-fade-in">Settings</h1>
+            <div class="space-y-6 animate-slide-up">
+                <div class="bg-zinc-900 mx-4 rounded-2xl overflow-hidden">
+                    <div class="flex items-center gap-4 p-4 border-b border-zinc-800">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-2xl font-bold">JD</div>
+                        <div>
+                            <h2 class="text-xl font-medium">John Doe</h2>
+                            <p class="text-sm text-zinc-400">Apple ID, iCloud, Media & Purchases</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 mx-4 rounded-2xl overflow-hidden">
+                    <div class="flex items-center gap-3 p-3 border-b border-zinc-800 active:bg-zinc-800 transition-colors cursor-pointer">
+                        <div class="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center"><i data-lucide="wifi" class="w-[18px] h-[18px] text-white"></i></div>
+                        <span class="flex-1 text-base">Wi-Fi</span>
+                        <span class="text-zinc-500 text-sm">Home_Network_5G</span>
+                        <i data-lucide="chevron-left" class="w-[18px] h-[18px] text-zinc-600 rotate-180"></i>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 border-b border-zinc-800 active:bg-zinc-800 transition-colors cursor-pointer">
+                        <div class="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center"><i data-lucide="battery" class="w-[18px] h-[18px] text-white"></i></div>
+                        <span class="flex-1 text-base">Battery</span>
+                        <span class="text-zinc-500 text-sm">84%</span>
+                        <i data-lucide="chevron-left" class="w-[18px] h-[18px] text-zinc-600 rotate-180"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-fallback">
+        <div class="h-full flex flex-col items-center justify-center bg-zinc-900 text-white p-8 text-center animate-fade-in">
+            <div class="w-24 h-24 bg-white/10 rounded-3xl flex items-center justify-center mb-6 animate-bounce">
+                <i data-lucide="settings" class="w-12 h-12 text-zinc-400"></i>
+            </div>
+            <h2 id="fallback-title" class="text-2xl font-bold mb-2">App</h2>
+            <p class="text-zinc-400">This app is currently under construction in this prototype.</p>
+        </div>
+    </template>
+
+    <script>
+        // --- DATA ---
+        // New apps added: YouTube, Google, Trading (Groww), Netflix, Spotify
+        const APPS = [
+            { id: 'Weather', name: 'Weather', icon: 'cloud-sun', color: 'bg-gradient-to-br from-blue-400 to-blue-600' },
+            { id: 'Calculator', name: 'Calculator', icon: 'calculator', color: 'bg-gradient-to-br from-orange-400 to-orange-600' },
+            { id: 'Settings', name: 'Settings', icon: 'settings', color: 'bg-gradient-to-br from-slate-600 to-slate-800' },
+            { id: 'YouTube', name: 'YouTube', icon: 'youtube', color: 'bg-gradient-to-br from-red-500 to-red-700', url: 'https://www.youtube.com' },
+            { id: 'Google', name: 'Google', icon: 'search', color: 'bg-gradient-to-br from-gray-100 to-gray-300 text-blue-600', url: 'https://www.google.com' },
+            { id: 'Trading', name: 'Groww', icon: 'trending-up', color: 'bg-gradient-to-br from-emerald-400 to-emerald-600', url: 'https://groww.in' },
+            { id: 'Netflix', name: 'Netflix', icon: 'film', color: 'bg-gradient-to-br from-zinc-800 to-black text-red-600 border border-zinc-700', url: 'https://www.netflix.com' },
+            { id: 'Spotify', name: 'Spotify', icon: 'headphones', color: 'bg-gradient-to-br from-green-400 to-green-600', url: 'https://open.spotify.com' },
+            { id: 'WhatsApp', name: 'WhatsApp', icon: 'message-square', color: 'bg-gradient-to-br from-green-400 to-emerald-600', url: 'https://web.whatsapp.com' },
+            { id: 'Instagram', name: 'Instagram', icon: 'instagram', color: 'bg-gradient-to-tr from-amber-400 via-rose-500 to-purple-600', url: 'https://www.instagram.com' },
+            { id: 'Facebook', name: 'Facebook', icon: 'facebook', color: 'bg-gradient-to-br from-blue-600 to-blue-800', url: 'https://www.facebook.com' },
+            { id: 'Twitter', name: 'X', icon: 'twitter', color: 'bg-gradient-to-br from-gray-800 to-black', url: 'https://x.com' },
+            { id: 'Clock', name: 'Clock', icon: 'clock', color: 'bg-gradient-to-br from-gray-800 to-black' },
+            { id: 'Calendar', name: 'Calendar', icon: 'calendar', color: 'bg-gradient-to-br from-red-400 to-red-600' },
+            { id: 'Camera', name: 'Camera', icon: 'camera', color: 'bg-gradient-to-br from-gray-300 to-gray-500' },
+            { id: 'Maps', name: 'Maps', icon: 'map', color: 'bg-gradient-to-br from-green-400 to-green-600' },
+        ];
+
+        const DOCK_APPS = [
+            { id: 'Phone', name: 'Phone', icon: 'phone', color: 'bg-gradient-to-br from-green-500 to-emerald-600' },
+            { id: 'Messages', name: 'Messages', icon: 'message-circle', color: 'bg-gradient-to-br from-blue-500 to-cyan-600' },
+            { id: 'Browser', name: 'Safari', icon: 'chrome', color: 'bg-gradient-to-br from-blue-100 to-blue-300 text-blue-600' },
+            { id: 'Mail', name: 'Mail', icon: 'mail', color: 'bg-gradient-to-br from-blue-400 to-indigo-600' },
+        ];
+
+        // --- GLOBAL STATE ---
+        let isUnlocked = false;
+        let activeApp = null;
+        let calcDisplay = '0';
+        
+        // Passcode State
+        const CORRECT_PIN = '2565';
+        let currentPin = '';
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHomeScreen();
+            startClock();
+            lucide.createIcons();
+        });
+
+        // --- CLOCK LOGIC ---
+        function startClock() {
+            const updateClock = () => {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+                const dateStr = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+                
+                document.querySelectorAll('.clock-time').forEach(el => el.textContent = timeStr);
+                document.querySelectorAll('.clock-date').forEach(el => el.textContent = dateStr);
+            };
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // --- LOCK SCREEN LOGIC ---
+        function showPinScreen() {
+            const defaultView = document.getElementById('lock-default');
+            const pinView = document.getElementById('lock-pin');
+            
+            defaultView.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                defaultView.classList.add('hidden');
+                pinView.classList.remove('hidden');
+                setTimeout(() => pinView.classList.remove('opacity-0'), 10);
+            }, 300);
+        }
+
+        function hidePinScreen() {
+            const defaultView = document.getElementById('lock-default');
+            const pinView = document.getElementById('lock-pin');
+            
+            pinView.classList.add('opacity-0');
+            setTimeout(() => {
+                pinView.classList.add('hidden');
+                defaultView.classList.remove('hidden');
+                setTimeout(() => defaultView.classList.remove('opacity-0', 'pointer-events-none'), 10);
+                
+                // Reset PIN
+                currentPin = '';
+                updatePinDots();
+            }, 300);
+        }
+
+        function enterPin(num) {
+            if (currentPin.length < 4) {
+                currentPin += num;
+                updatePinDots();
+                
+                if (currentPin.length === 4) {
+                    setTimeout(checkPin, 150);
+                }
+            }
+        }
+
+        function deletePin() {
+            if (currentPin.length > 0) {
+                currentPin = currentPin.slice(0, -1);
+                updatePinDots();
+            }
+        }
+
+        function updatePinDots() {
+            const dots = document.querySelectorAll('#pin-dots div');
+            dots.forEach((dot, index) => {
+                if (index < currentPin.length) {
+                    dot.classList.add('bg-white');
+                } else {
+                    dot.classList.remove('bg-white');
+                }
+            });
+        }
+
+        function checkPin() {
+            if (currentPin === CORRECT_PIN) {
+                unlockPhone();
+            } else {
+                // Incorrect PIN Shake animation
+                const dotsContainer = document.getElementById('pin-dots');
+                dotsContainer.classList.add('animate-shake');
+                
+                // Haptic feedback simulation
+                if (navigator.vibrate) navigator.vibrate(200);
+
+                setTimeout(() => {
+                    dotsContainer.classList.remove('animate-shake');
+                    currentPin = '';
+                    updatePinDots();
+                }, 400);
+            }
+        }
+
+        function unlockPhone() {
+            isUnlocked = true;
+            const lockScreen = document.getElementById('lock-screen');
+            const homeScreen = document.getElementById('home-screen');
+            
+            lockScreen.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => lockScreen.style.display = 'none', 500);
+
+            homeScreen.classList.remove('opacity-0', 'blur-md', 'pointer-events-none');
+            homeScreen.classList.add('opacity-100', 'blur-0', 'pointer-events-auto');
+        }
+
+        // --- APP STATE MANAGEMENT ---
+        function openApp(appId) {
+            activeApp = appId;
+            const allApps = [...APPS, ...DOCK_APPS];
+            const appData = allApps.find(a => a.id === appId);
+            
+            // Animate Home Screen backwards
+            const homeScreen = document.getElementById('home-screen');
+            homeScreen.classList.remove('scale-100', 'opacity-100', 'blur-0', 'pointer-events-auto');
+            homeScreen.classList.add('scale-95', 'opacity-0', 'blur-md', 'pointer-events-none');
+
+            // Setup App Content
+            const appContent = document.getElementById('app-content');
+            appContent.innerHTML = ''; // clear previous
+            
+            // Check if it's an external web app or internal template
+            if (appData && appData.url) {
+                let template = document.getElementById('tpl-webapp');
+                appContent.appendChild(template.content.cloneNode(true));
+                
+                document.getElementById('webapp-title').textContent = appData.name;
+                
+                const iconContainer = document.getElementById('webapp-icon-container');
+                iconContainer.className = `w-24 h-24 rounded-[28px] flex items-center justify-center mb-8 shadow-2xl animate-slide-up ${appData.color}`;
+                
+                const iconEl = document.getElementById('webapp-icon');
+                iconEl.setAttribute('data-lucide', appData.icon);
+
+                // Setup launch button
+                document.getElementById('webapp-btn').onclick = () => {
+                    window.open(appData.url, '_blank');
+                };
+
+            } else {
+                let templateId = `tpl-${appId.toLowerCase()}`;
+                let template = document.getElementById(templateId);
+                
+                if (template) {
+                    appContent.appendChild(template.content.cloneNode(true));
+                    if (appId === 'Calculator') initCalculator();
+                } else {
+                    let fallback = document.getElementById('tpl-fallback').content.cloneNode(true);
+                    fallback.querySelector('#fallback-title').textContent = `${appId} App`;
+                    appContent.appendChild(fallback);
+                }
+            }
+
+            // Re-initialize icons inside new DOM
+            lucide.createIcons();
+
+            // Show App Overlay
+            const appOverlay = document.getElementById('app-overlay');
+            appOverlay.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+            appOverlay.classList.add('scale-100', 'opacity-100', 'pointer-events-auto', 'animate-zoom-in');
+        }
+
+        function closeApp() {
+            activeApp = null;
+            
+            // Hide App Overlay
+            const appOverlay = document.getElementById('app-overlay');
+            appOverlay.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto', 'animate-zoom-in');
+            appOverlay.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+
+            // Restore Home Screen
+            const homeScreen = document.getElementById('home-screen');
+            homeScreen.classList.remove('scale-95', 'opacity-0', 'blur-md');
+            homeScreen.classList.add('scale-100', 'opacity-100', 'blur-0', 'pointer-events-auto');
+        }
+
+        // --- RENDER HELPERS ---
+        function renderHomeScreen() {
+            const grid = document.getElementById('app-grid');
+            const dock = document.getElementById('dock-grid');
+
+            const appIconClass = "flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-transform duration-200 active:scale-90 hover:scale-105";
+            const iconBgClass = "w-14 h-14 rounded-[18px] flex items-center justify-center shadow-lg text-white";
+
+            APPS.forEach(app => {
+                grid.innerHTML += `
+                    <div class="${appIconClass}" onclick="openApp('${app.id}')">
+                        <div class="${iconBgClass} ${app.color}">
+                            <i data-lucide="${app.icon}" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-white/90 text-[11px] font-medium tracking-wide drop-shadow-md">${app.name}</span>
+                    </div>
+                `;
+            });
+
+            DOCK_APPS.forEach(app => {
+                dock.innerHTML += `
+                    <div class="${appIconClass}" onclick="openApp('${app.id}')">
+                        <div class="${iconBgClass} ${app.color} !w-[52px] !h-[52px]">
+                            <i data-lucide="${app.icon}" class="w-[26px] h-[26px]"></i>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // --- CALCULATOR LOGIC ---
+        function initCalculator() {
+            calcDisplay = '0';
+            const btnContainer = document.getElementById('calc-buttons');
+            
+            const btnClass = "h-16 rounded-full text-2xl font-medium flex items-center justify-center active:bg-white/40 transition-colors";
+            const numBtn = `${btnClass} bg-white/20 text-white`;
+            const opBtn = `${btnClass} bg-orange-500 text-white`;
+            const specialBtn = `${btnClass} bg-gray-300 text-black`;
+
+            const buttons = [
+                { val: 'C', class: specialBtn }, { val: '+/-', class: specialBtn }, { val: '%', class: specialBtn }, { val: '/', icon: 'divide', class: opBtn },
+                { val: '7', class: numBtn }, { val: '8', class: numBtn }, { val: '9', class: numBtn }, { val: 'x', icon: 'x', class: opBtn },
+                { val: '4', class: numBtn }, { val: '5', class: numBtn }, { val: '6', class: numBtn }, { val: '-', icon: 'minus', class: opBtn },
+                { val: '1', class: numBtn }, { val: '2', class: numBtn }, { val: '3', class: numBtn }, { val: '+', icon: 'plus', class: opBtn },
+                { val: '0', class: `${numBtn} col-span-2 justify-start pl-8` }, { val: '.', class: numBtn }, { val: '=', icon: 'equal', class: opBtn }
+            ];
+
+            btnContainer.innerHTML = buttons.map(b => `
+                <button onclick="handleCalcPress('${b.val}')" class="${b.class}">
+                    ${b.icon ? `<i data-lucide="${b.icon}" class="w-6 h-6"></i>` : b.val}
+                </button>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        window.handleCalcPress = function(val) {
+            const displayEl = document.getElementById('calc-display');
+            if (calcDisplay === '0' && !isNaN(val)) calcDisplay = val;
+            else if (val === 'C') calcDisplay = '0';
+            else if (val === '=') {
+                try {
+                    const calculate = new Function('return ' + calcDisplay.replace(/x/g, '*'));
+                    calcDisplay = String(calculate());
+                } catch(e) { 
+                    calcDisplay = 'Error'; 
+                }
+            }
+            else calcDisplay += val;
+            displayEl.textContent = calcDisplay;
+        };
+    </script>
+</body>
+</html>
