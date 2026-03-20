@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="title">
+      <h1>Snake Game</h1>
+      <p class="subtitle">Eat food, grow longer, beat the leaderboard!</p>
+    </div>
+
+    <div class="status">
+      <div class="score">
+        <span>Score:</span> <span id="scoreValue">0</span>
+      </div>
+      <div class="highScore">
+        <span>High Score:</span> <span id="highScoreValue">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="game-panel">
+      <canvas id="gameCanvas" width="420" height="420"></canvas>
+
+      <div class="controls">
+        <button id="startBtn" class="btn">Start / Restart</button>
+        <label>
+          Player name
+          <input id="playerName" type="text" maxlength="18" placeholder="Your name" />
+        </label>
+      </div>
+
+      <div class="leaderboard">
+        <h2>Leaderboard (Top 10)</h2>
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody">
+            <tr><td colspan="4" class="loading">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="gameOverModal" aria-hidden="true">
+    <div class="modal-content">
+      <h2>Game Over</h2>
+      <p>Your score: <strong id="finalScore">0</strong></p>
+      <p id="modalMessage" class="small"></p>
+      <button id="saveScoreBtn" class="btn">Save Score</button>
+      <button id="closeModalBtn" class="btn secondary">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Built with HTML, CSS, JavaScript, Node.js + SQLite.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
