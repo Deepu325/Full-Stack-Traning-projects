@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reservation - Spice Garden</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Spice Garden</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="order.html">Order</a>
+      <a href="reservation.html" class="active">Reservation</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="form-section">
+      <h1>Reserve a Table</h1>
+      <form id="reservation-form">
+        <div class="grid form-grid">
+          <input type="text" id="res-name" placeholder="Full Name" required />
+          <input type="email" id="res-email" placeholder="Email" required />
+          <input type="tel" id="res-phone" placeholder="Phone" pattern="[0-9]{10}" required />
+          <input type="date" id="res-date" required />
+          <input type="time" id="res-time" required />
+          <input type="number" id="res-guests" min="1" max="20" value="2" required />
+        </div>
+        <button type="submit" class="btn">Reserve</button>
+      </form>
+      <p id="reservation-message" class="message"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Spice Garden</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

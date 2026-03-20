@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order - Spice Garden</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Spice Garden</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="order.html" class="active">Order</a>
+      <a href="reservation.html">Reservation</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section>
+      <h1>Place Your Order</h1>
+      <div class="flex order-container">
+        <div class="order-section">
+          <h2>Select Items</h2>
+          <div id="order-menu" class="menu-list"></div>
+        </div>
+        <div class="order-section">
+          <h2>Your Cart</h2>
+          <ul id="cart-items"></ul>
+          <p>Total: ₹<span id="cart-total">0.00</span></p>
+          <hr />
+          <form id="order-form">
+            <h3>Customer Details</h3>
+            <input type="text" id="customer-name" placeholder="Name" required />
+            <input type="email" id="customer-email" placeholder="Email" required />
+            <input type="tel" id="customer-phone" placeholder="Phone" pattern="[0-9]{10}" required />
+            <button type="submit" class="btn">Submit Order</button>
+          </form>
+        </div>
+      </div>
+      <div id="order-message" class="message"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Spice Garden</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

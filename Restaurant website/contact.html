@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Spice Garden</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Spice Garden</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="order.html">Order</a>
+      <a href="reservation.html">Reservation</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="form-section">
+      <h1>Get in Touch</h1>
+      <div class="grid contact-layout">
+        <form id="contact-form">
+          <input type="text" id="contact-name" placeholder="Full Name" required />
+          <input type="email" id="contact-email" placeholder="Email" required />
+          <input type="tel" id="contact-phone" placeholder="Phone" pattern="[0-9]{10}" required />
+          <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+        <div class="contact-details">
+          <h2>Restaurant Info</h2>
+          <p>📍 45 Culinary Street, Foodie City</p>
+          <p>📞 +91 98765 43210</p>
+          <p>📧 info@spicegarden.com</p>
+          <p>⏰ Mon-Sun: 10:00 AM - 11:00 PM</p>
+        </div>
+      </div>
+      <p id="contact-feedback" class="message"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Spice Garden</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
