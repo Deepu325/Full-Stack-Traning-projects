@@ -1,0 +1,14 @@
+{
+  "name": "travel-explorer",
+  "version": "1.0.0",
+  "description": "A travel explorer website mini project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "body-parser": "^1.20.2"
+  }
+}
