@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jnanitha N R – Full Stack Developer & Data Analyst portfolio." />
+  <title>Jnanitha N R | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav__inner">
+        <a href="#hero" class="nav__logo">JNR.</a>
+
+        <ul class="nav__menu" id="nav-menu" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button id="theme-toggle" aria-label="Toggle colour theme">☀️</button>
+          </li>
+        </ul>
+
+        <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div id="hero-canvas"></div>
+
+      <div class="container hero__inner">
+
+        <div class="hero__text">
+          <div class="hero__tag">✦ Available for work</div>
+
+          <h1 class="hero__name">
+            Hi, I'm<br />
+            <span>Jnanitha N R</span>
+          </h1>
+
+          <p class="hero__role">
+            <span id="typed-role"></span>
+          </p>
+
+          <p class="hero__tagline">
+            I craft clean, performant web experiences and turn raw data into
+            meaningful insights — one pixel and one query at a time.
+          </p>
+
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">View Projects →</a>
+            <a href="#contact"  class="btn btn--outline">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero__image-wrap">
+          <div class="hero__image-ring">
+            <img
+              src="assets/images/profile.jpg"
+              alt="Portrait of Jnanitha N R"
+              width="340"
+              height="340"
+              loading="eager"
+            />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ABOUT
+    ══════════════════════════════════════════ -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="about__grid">
+
+          <div class="about__text" data-reveal>
+            <span class="section__label">About me</span>
+            <h2 class="section__title">Passionate about <span>building things</span></h2>
+            <p>
+              I'm a Full Stack Developer and Data Analyst with a love for creating
+              elegant solutions to complex problems. I enjoy working across the
+              entire stack — from designing intuitive UIs to architecting scalable
+              back-end systems and data pipelines.
+            </p>
+            <p>
+              When I'm not coding, you'll find me exploring new datasets, reading
+              about emerging tech, or sketching UI concepts.
+            </p>
+
+            <div class="about__stats">
+              <div class="stat">
+                <div class="stat__num">3+</div>
+                <div class="stat__label">Projects</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">5+</div>
+                <div class="stat__label">Skills</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">∞</div>
+                <div class="stat__label">Curiosity</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about__card" data-reveal>
+            <div class="about__card-item">
+              <div class="about__card-icon">🎓</div>
+              <div>
+                <h4>Education</h4>
+                <p>B.E. / B.Tech in Computer Science or related field</p>
+              </div>
+            </div>
+            <div class="about__card-item">
+              <div class="about__card-icon">💼</div>
+              <div>
+                <h4>Experience</h4>
+                <p>Full Stack Development &amp; Data Analytics projects</p>
+              </div>
+            </div>
+            <div class="about__card-item">
+              <div class="about__card-icon">📍</div>
+              <div>
+                <h4>Location</h4>
+                <p>India</p>
+              </div>
+            </div>
+            <div class="about__card-item">
+              <div class="about__card-icon">🌐</div>
+              <div>
+                <h4>Languages</h4>
+                <p>English, Kannada</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SKILLS
+    ══════════════════════════════════════════ -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <span class="section__label">What I know</span>
+        <h2 class="section__title">Technical <span>Skills</span></h2>
+
+        <div class="skills__grid">
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">🌐</span>
+              <span class="skill-card__name">HTML5</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.92"></div>
+            </div>
+            <div class="skill-bar__label"><span>Semantic &amp; Accessible</span><span>92%</span></div>
+          </div>
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">🎨</span>
+              <span class="skill-card__name">CSS3</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.88"></div>
+            </div>
+            <div class="skill-bar__label"><span>Animations &amp; Responsive</span><span>88%</span></div>
+          </div>
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">⚡</span>
+              <span class="skill-card__name">JavaScript</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.85"></div>
+            </div>
+            <div class="skill-bar__label"><span>ES6+ &amp; DOM</span><span>85%</span></div>
+          </div>
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">⚛️</span>
+              <span class="skill-card__name">React</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.80"></div>
+            </div>
+            <div class="skill-bar__label"><span>Hooks &amp; Context</span><span>80%</span></div>
+          </div>
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">🐍</span>
+              <span class="skill-card__name">Python</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.82"></div>
+            </div>
+            <div class="skill-bar__label"><span>Data &amp; Scripting</span><span>82%</span></div>
+          </div>
+
+          <div class="skill-card" data-reveal>
+            <div class="skill-card__header">
+              <span class="skill-card__icon">📊</span>
+              <span class="skill-card__name">Data Analysis</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-bar__fill" style="--w:0.78"></div>
+            </div>
+            <div class="skill-bar__label"><span>Pandas &amp; Visualization</span><span>78%</span></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PROJECTS
+    ══════════════════════════════════════════ -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <span class="section__label">What I've built</span>
+        <h2 class="section__title">Featured <span>Projects</span></h2>
+
+        <div class="projects__grid">
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#1a0f2e,#2e1a3a)">🎵</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">PHP</span>
+                <span class="tag">SQL</span>
+              </div>
+              <h3 class="project-card__title">Music Streaming App</h3>
+              <p class="project-card__desc">
+                Full-stack music streaming platform with user auth, playlist management,
+                song uploads, and a PHP/MySQL backend.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/music%20streaming%20folder" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#0f2a1a,#1a3a2e)">✈️</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">SQL</span>
+                <span class="tag">CSS</span>
+              </div>
+              <h3 class="project-card__title">Travel Planner</h3>
+              <p class="project-card__desc">
+                Full-stack travel planner with trip management, itinerary builder,
+                expense tracker, and user authentication via REST API.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/TravelPlanner" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#1e3a5f,#0f172a)">🍽️</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">SQL</span>
+              </div>
+              <h3 class="project-card__title">Restaurant Website</h3>
+              <p class="project-card__desc">
+                Multi-page restaurant site with menu, online ordering, table
+                reservations, and contact form backed by a database.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/Restaurant%20website" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#2a1a0f,#3a2e1a)">📊</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">CSS</span>
+              </div>
+              <h3 class="project-card__title">Social Media Dashboard</h3>
+              <p class="project-card__desc">
+                Analytics dashboard with user login, registration, and live
+                social media stats powered by a Node.js backend.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/social%20medai%20dashboard" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#1a2e1a,#0f1f0f)">✅</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3 class="project-card__title">Student Task Manager</h3>
+              <p class="project-card__desc">
+                CRUD task manager built for students to track assignments,
+                deadlines, and priorities with local storage persistence.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/StudentTaskManager" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-card__thumb" style="background:linear-gradient(135deg,#0f1f2e,#1a2e3a)">🎬</div>
+            <div class="project-card__body">
+              <div class="project-card__tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <h3 class="project-card__title">Movie Poster Gallery</h3>
+              <p class="project-card__desc">
+                Interactive movie poster gallery with dynamic rendering,
+                search/filter functionality, and a clean responsive layout.
+              </p>
+              <div class="project-card__links">
+                <a href="#" aria-label="Live demo">🔗 Live Demo</a>
+                <a href="https://github.com/Deepu325/Full-Stack-Traning-projects/tree/main/Movie%20Poster%20Gallery" target="_blank" rel="noopener" aria-label="GitHub">⭐ GitHub</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         RESUME
+    ══════════════════════════════════════════ -->
+    <section class="section resume" id="resume">
+      <div class="container resume__inner" data-reveal>
+        <span class="section__label">My resume</span>
+        <h2 class="section__title" style="margin-bottom:.5rem">Download <span>Resume</span></h2>
+        <p>Get a full overview of my experience, education, and skills in one document.</p>
+        <a href="assets/Jnanitha_NR_Resume.pdf" download class="btn btn--primary">
+          ⬇ Download Resume
+        </a>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════ -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <span class="section__label">Say hello</span>
+        <h2 class="section__title">Get in <span>Touch</span></h2>
+
+        <div class="contact__grid">
+
+          <div class="contact__info" data-reveal>
+            <h3>Let's work together</h3>
+            <p>
+              I'm open to freelance projects, full-time roles, and interesting
+              collaborations. Drop me a message and I'll get back to you within
+              24 hours.
+            </p>
+            <div class="contact__links">
+              <a href="https://mail.google.com/mail/?view=cm&to=jnanithagowganr07@gmail.com" target="_blank" rel="noopener" class="contact__link">
+                <span class="contact__link-icon">📧</span>
+                jnanithagowganr07@gmail.com
+              </a>
+              <a href="https://github.com/Deepu325/Full-Stack-Traning-projects" target="_blank" rel="noopener" class="contact__link">
+                <span class="contact__link-icon">🐙</span>
+                github.com/Deepu325
+              </a>
+              <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact__link">
+                <span class="contact__link-icon">💼</span>
+                linkedin.com/in/jnanitha
+              </a>
+            </div>
+          </div>
+
+          <form class="form" id="contact-form" novalidate data-reveal>
+            <div class="form__group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="form__group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jnanithagowganr07@gmail.com" autocomplete="email" />
+            </div>
+            <div class="form__group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…"></textarea>
+            </div>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+            <button type="submit" class="btn btn--primary" style="align-self:flex-start">Send Message →</button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2025 Jnanitha N R. Built with ❤️ and vanilla JS.</p>
+      <div class="footer__socials">
+        <a href="https://github.com/Deepu325/Full-Stack-Traning-projects" target="_blank" rel="noopener" aria-label="GitHub">🐙</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=jnanithagowganr07@gmail.com" target="_blank" rel="noopener" aria-label="Email">📧</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/script.js"></script>
+
+</body>
+</html>
