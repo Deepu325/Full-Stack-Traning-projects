@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Course Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #007bff, #28a745);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .hero-buttons a {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .btn-login {
+            background: white;
+            color: #007bff;
+        }
+        .btn-login:hover {
+            background: #e9ecef;
+        }
+        .features {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .feature-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .feature-card h3 {
+            margin: 0 0 8px;
+            color: #333;
+        }
+        .feature-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #999;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>📚 Online Course Registration</h1>
+            <p>Browse, register, and manage your courses — all in one place.</p>
+            <div class="hero-buttons">
+                <a href="login.jsp" class="btn-login">Login</a>
+            </div>
+        </div>
+
+        <h2 style="text-align:center; color:#333; margin-bottom:20px;">Available Courses</h2>
+        <div class="courses-grid" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:50px;">
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#007bff; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Programming</span>
+                <h3 style="margin:10px 0 5px;">Introduction to Java</h3>
+                <p style="color:#666; font-size:0.9em;">Learn basics of Java programming</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Dr. Smith</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Mon-Wed 10AM-12PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 50</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#28a745; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Web</span>
+                <h3 style="margin:10px 0 5px;">Web Development</h3>
+                <p style="color:#666; font-size:0.9em;">HTML, CSS, JS basics</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Prof. Johnson</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Tue-Thu 2PM-4PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 30</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#007bff; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Programming</span>
+                <h3 style="margin:10px 0 5px;">Data Structures &amp; Algorithms</h3>
+                <p style="color:#666; font-size:0.9em;">Master arrays, trees, graphs and sorting algorithms</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Dr. Patel</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Mon-Wed 2PM-4PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 40</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#dc3545; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Database</span>
+                <h3 style="margin:10px 0 5px;">Database Management</h3>
+                <p style="color:#666; font-size:0.9em;">SQL, normalization, and database design</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Prof. Lee</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Tue-Thu 10AM-12PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 35</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#007bff; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Programming</span>
+                <h3 style="margin:10px 0 5px;">Python for Beginners</h3>
+                <p style="color:#666; font-size:0.9em;">Introduction to Python programming language</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Dr. Brown</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Mon-Fri 9AM-10AM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 50</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#6f42c1; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">AI/ML</span>
+                <h3 style="margin:10px 0 5px;">Machine Learning Basics</h3>
+                <p style="color:#666; font-size:0.9em;">Supervised and unsupervised learning fundamentals</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Prof. Garcia</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Wed-Fri 2PM-4PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 25</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#fd7e14; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Design</span>
+                <h3 style="margin:10px 0 5px;">UI/UX Design</h3>
+                <p style="color:#666; font-size:0.9em;">Design principles, wireframing and prototyping</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Dr. Wilson</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Tue-Thu 4PM-6PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 20</p>
+            </div>
+            <div class="course-card" style="background:white; border-radius:8px; padding:20px; width:260px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+                <span style="background:#17a2b8; color:white; font-size:0.75em; padding:3px 8px; border-radius:12px;">Cloud</span>
+                <h3 style="margin:10px 0 5px;">Cloud Computing with AWS</h3>
+                <p style="color:#666; font-size:0.9em;">Introduction to AWS services and cloud architecture</p>
+                <p style="font-size:0.85em; color:#555;">👨‍🏫 Prof. Martinez</p>
+                <p style="font-size:0.85em; color:#555;">🕐 Mon-Wed 4PM-6PM</p>
+                <p style="font-size:0.85em; color:#555;">👥 Capacity: 30</p>
+            </div>
+        </div>
+
+        <h2 style="text-align:center; color:#333; margin-bottom:20px;">Why Choose Us?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🔍</div>
+                <h3>Browse Courses</h3>
+                <p>Explore a wide catalog of available courses across categories.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📝</div>
+                <h3>Easy Registration</h3>
+                <p>Register for courses instantly with real-time capacity checks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📋</div>
+                <h3>My Registrations</h3>
+                <p>View and manage all your enrolled courses in one place.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h3>Secure Access</h3>
+                <p>Your account is protected with secure login and sessions.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Online Course Registration System. For educational purposes.</p>
+        </footer>
+    </div>
+</body>
+</html>
