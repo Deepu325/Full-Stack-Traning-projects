@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Grocery Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1 class="logo">🛒 GroceryHub</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Products</a></li>
+                <li><a href="cart.html" class="nav-link">Cart <span id="cartCount" class="badge">0</span></a></li>
+                <li id="authMenu">
+                    <a href="login.html" class="nav-link btn-login">Login</a>
+                    <a href="register.html" class="nav-link btn-register">Register</a>
+                </li>
+                <li id="userMenuDropdown" style="display:none;">
+                    <div class="user-menu">
+                        <span id="userName" class="user-name"></span>
+                        <button onclick="logoutUser()" class="btn-logout">Logout</button>
+                        <a href="order-history.html" class="nav-link">My Orders</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Fresh Groceries at Your Doorstep</h2>
+                <p>Quality products delivered fast and fresh. Shop now and save!</p>
+                <a href="dashboard.html" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick delivery to your home</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Fresh Quality</h3>
+                    <p>Guaranteed fresh products</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Competitive and fair pricing</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Payment</h3>
+                    <p>Safe and secure transactions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid" id="featuredProductsGrid">
+                <!-- Featured products will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section class="live-demo-section">
+        <div class="container">
+            <h2>🚀 Live Demo — Explore All Pages</h2>
+            <div class="demo-cards">
+                <a href="index.html" class="demo-card">
+                    <div class="demo-card-icon">🏠</div>
+                    <h4>Home</h4>
+                    <p>Landing page & featured products</p>
+                </a>
+                <a href="register.html" class="demo-card">
+                    <div class="demo-card-icon">📝</div>
+                    <h4>Register</h4>
+                    <p>Create a new account</p>
+                </a>
+                <a href="login.html" class="demo-card">
+                    <div class="demo-card-icon">🔑</div>
+                    <h4>Login</h4>
+                    <p>Sign in to your account</p>
+                </a>
+                <a href="dashboard.html" class="demo-card">
+                    <div class="demo-card-icon">🛍️</div>
+                    <h4>Products</h4>
+                    <p>Browse & filter all products</p>
+                </a>
+                <a href="cart.html" class="demo-card">
+                    <div class="demo-card-icon">🛒</div>
+                    <h4>Cart</h4>
+                    <p>View & manage cart items</p>
+                </a>
+                <a href="order-history.html" class="demo-card">
+                    <div class="demo-card-icon">📦</div>
+                    <h4>My Orders</h4>
+                    <p>Track your order history</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 GroceryHub. All rights reserved. | College Mini Project</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Load categories on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCategories();
+            loadFeaturedProducts();
+            updateAuthMenu();
+            updateCartCount();
+        });
+
+        function loadCategories() {
+            fetch('../backend/product_api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'action=get_categories'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const categoryGrid = document.getElementById('categoryGrid');
+                categoryGrid.innerHTML = '';
+                
+                const categories = ['Grains', 'Flour', 'Oils', 'Dairy', 'Vegetables', 'Fruits'];
+                categories.forEach(category => {
+                    const categoryCard = document.createElement('div');
+                    categoryCard.className = 'category-card';
+                    categoryCard.innerHTML = `
+                        <a href="dashboard.html?category=${category}">
+                            <h3>${category}</h3>
+                        </a>
+                    `;
+                    categoryGrid.appendChild(categoryCard);
+                });
+            });
+        }
+
+        function loadFeaturedProducts() {
+            // Sample products for display
+            const sampleProducts = [
+                { product_id: 1, product_name: 'Basmati Rice (1kg)', category: 'Grains', price: 150, quantity: 50, image_url: 'https://www.kolkatarice.com/wp-content/uploads/2024/10/bg-rice-basmati-03.jpg' },
+                { product_id: 2, product_name: 'Whole Wheat Flour (2kg)', category: 'Flour', price: 75, quantity: 40, image_url: 'https://www.clickfork.ca/wp-content/uploads/2020/05/Whole-Wheat-Flour.jpg' },
+                { product_id: 3, product_name: 'Olive Oil (500ml)', category: 'Oils', price: 450, quantity: 25, image_url: 'https://images.healthshots.com/healthshots/en/uploads/2022/09/29160601/olive-oil.jpg' },
+                { product_id: 4, product_name: 'Fresh Milk (1L)', category: 'Dairy', price: 65, quantity: 60, image_url: 'https://thumbs.dreamstime.com/b/fresh-milk-bottle-splashing-creamy-liquid-droplets-mockup-white-367666649.jpg' },
+                { product_id: 5, product_name: 'Fresh Carrots (500g)', category: 'Vegetables', price: 35, quantity: 80, image_url: 'https://townsquare.media/site/723/files/2022/09/attachment-nick-fewings-IZq1FV87qpM-unsplash.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89' },
+                { product_id: 6, product_name: 'Organic Apples (1kg)', category: 'Fruits', price: 120, quantity: 45, image_url: 'https://delivisor.com/wp-content/uploads/2024/12/apple-harvest-in-the-garden-selective-focus-2023-11-27-04-53-15-utc-1200x755.jpg' }
+            ];
+
+            fetch('../backend/product_api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'action=get_products'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const productsGrid = document.getElementById('featuredProductsGrid');
+                productsGrid.innerHTML = '';
+                
+                // Display first 6 products as featured
+                const featuredProducts = (data.status && data.products && data.products.length > 0) 
+                    ? data.products.slice(0, 6) 
+                    : sampleProducts;
+                
+                featuredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    const imgSrc = product.image_url ? product.image_url : `../images/${product.product_id}.jpg`;
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${imgSrc}" alt="${product.product_name}" onerror="this.src='../images/default.jpg'">
+                        </div>
+                        <h3>${product.product_name}</h3>
+                        <p class="category">${product.category}</p>
+                        <p class="description">Stock: ${product.quantity}</p>
+                        <div class="product-footer">
+                            <p class="price">₹${parseFloat(product.price).toFixed(2)}</p>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm" onclick="addToCart(${product.product_id}, '${product.product_name}', ${product.price})">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    productsGrid.appendChild(productCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading featured products:', error);
+                // Display sample products on error
+                const productsGrid = document.getElementById('featuredProductsGrid');
+                productsGrid.innerHTML = '';
+                
+                sampleProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    const imgSrc = product.image_url ? product.image_url : `../images/${product.product_id}.jpg`;
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${imgSrc}" alt="${product.product_name}" onerror="this.src='../images/default.jpg'">
+                        </div>
+                        <h3>${product.product_name}</h3>
+                        <p class="category">${product.category}</p>
+                        <p class="description">Stock: ${product.quantity}</p>
+                        <div class="product-footer">
+                            <p class="price">₹${parseFloat(product.price).toFixed(2)}</p>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm" onclick="addToCart(${product.product_id}, '${product.product_name}', ${product.price})">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    productsGrid.appendChild(productCard);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
